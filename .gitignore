@@ -1,0 +1,5 @@
+/yubifs
+.venv/
+__pycache__/
+*.wad
+.crush/
