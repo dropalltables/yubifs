@@ -9,8 +9,8 @@ import (
 	"github.com/charmbracelet/log"
 	gopiv "github.com/go-piv/piv-go/v2/piv"
 
-	"yubifs/internal/piv"
-	"yubifs/internal/types"
+	"github.com/dropalltables/yubifs/internal/piv"
+	"github.com/dropalltables/yubifs/internal/types"
 )
 
 type Manager struct {
@@ -26,6 +26,10 @@ func NewManager(sb *types.Superblock) *Manager {
 		Sb:          sb,
 		currentDisk: -1,
 	}
+}
+
+func (dm *Manager) Superblock() *types.Superblock {
+	return dm.Sb
 }
 
 func (dm *Manager) openTTY() *os.File {

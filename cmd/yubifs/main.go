@@ -14,10 +14,10 @@ import (
 	gofs "github.com/hanwen/go-fuse/v2/fs"
 	"github.com/hanwen/go-fuse/v2/fuse"
 
-	"yubifs/internal/device"
-	"yubifs/internal/fs"
-	"yubifs/internal/piv"
-	"yubifs/internal/types"
+	"github.com/dropalltables/yubifs/internal/device"
+	"github.com/dropalltables/yubifs/internal/fs"
+	"github.com/dropalltables/yubifs/internal/piv"
+	"github.com/dropalltables/yubifs/internal/types"
 )
 
 func usage() {

@@ -2,13 +2,15 @@
 
 yubikey-based block filesystem
 
+[https://github.com/dropalltables/yubifs](https://github.com/dropalltables/yubifs)
+
 ## Requirements
 
 | Item | Notes |
 |------|--------|
 | YubiKey 5 | One or more; series 5 NVM limits usable slots |
 | macOS FUSE | [macFUSE](https://osxfuse.github.io/) |
-| Go | 1.22+ to build from source |
+| Go | 1.24+ to build from source (see `go.mod`) |
 | Smart card | PC/SC access for the YubiKey |
 
 ## Build
@@ -18,6 +20,14 @@ git clone https://github.com/dropalltables/yubifs.git
 cd yubifs
 go build -o yubifs ./cmd/yubifs
 ```
+
+## Testing
+
+```bash
+go test ./...
+```
+
+Tests cover on-disk superblock layout (`internal/types`), PIV slot mapping (`internal/piv`), and the FUSE layer with an in-memory device (`internal/fs`). They do not require a YubiKey or FUSE mount.
 
 ## Commands
 

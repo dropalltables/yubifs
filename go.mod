@@ -1,6 +1,8 @@
-module yubifs
+module github.com/dropalltables/yubifs
 
-go 1.22
+go 1.24
+
+toolchain go1.24.6
 
 require (
 	github.com/charmbracelet/log v1.0.0

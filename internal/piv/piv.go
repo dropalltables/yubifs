@@ -14,7 +14,7 @@ import (
 
 	gopiv "github.com/go-piv/piv-go/v2/piv"
 
-	"yubifs/internal/types"
+	"github.com/dropalltables/yubifs/internal/types"
 )
 
 var (

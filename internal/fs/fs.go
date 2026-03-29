@@ -11,13 +11,21 @@ import (
 	gofs "github.com/hanwen/go-fuse/v2/fs"
 	"github.com/hanwen/go-fuse/v2/fuse"
 
-	"yubifs/internal/device"
-	"yubifs/internal/types"
+	"github.com/dropalltables/yubifs/internal/types"
 )
+
+// Device is the block device and superblock backing the FUSE filesystem.
+// Production uses *device.Manager; tests use an in-memory implementation.
+type Device interface {
+	Superblock() *types.Superblock
+	ReadBlock(block int) ([]byte, error)
+	WriteBlock(block int, data []byte) error
+	WriteSuperblockToCurrent() error
+}
 
 type YubiFS struct {
 	gofs.Inode
-	Dev *device.Manager
+	Dev Device
 	mu  sync.Mutex
 	ino uint32
 }
@@ -28,7 +36,7 @@ func (r *YubiFS) nextIno() uint32 {
 }
 
 func (r *YubiFS) sb() *types.Superblock {
-	return r.Dev.Sb
+	return r.Dev.Superblock()
 }
 
 var _ = (gofs.NodeGetattrer)((*YubiFS)(nil))
